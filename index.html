@@ -1,0 +1,2437 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atividade de Ciências — Revisão</title>
+<style>
+:root{
+  --azul-900:#0f2a4d; --azul-700:#1a3c6e; --azul-500:#2f5aa8;
+  --cinza-900:#20242c; --cinza-600:#5b6270; --cinza-300:#d7dbe2; --cinza-100:#f4f6f9;
+  font-family:'Segoe UI', Inter, system-ui, -apple-system, Arial, sans-serif;
+}
+*{box-sizing:border-box;}
+body{ margin:0; background:var(--cinza-100); color:var(--cinza-900); -webkit-font-smoothing:antialiased; }
+header.top{ background:linear-gradient(135deg, var(--azul-900), var(--azul-500)); color:#fff; padding:24px 28px 20px; box-shadow:0 4px 18px rgba(15,42,77,.25);}
+header.top .eyebrow{ font-size:12px; letter-spacing:.14em; text-transform:uppercase; opacity:.8; font-weight:600; margin-bottom:6px;}
+header.top h1{ margin:0 0 6px; font-size:22px; font-weight:800;}
+header.top p{ margin:0; font-size:13px; opacity:.88; max-width:720px; line-height:1.5;}
+.controls{ display:flex; flex-wrap:wrap; gap:12px; align-items:center; margin-top:16px;}
+button{ font-family:inherit; font-size:14px; border:none; border-radius:8px; cursor:pointer; }
+button.primary{ background:#fff; color:var(--azul-700); font-weight:800; padding:10px 18px; box-shadow:0 2px 6px rgba(0,0,0,.15);}
+button.primary:hover{ background:#eef3fb; }
+button.primary:disabled{ opacity:.5; cursor:not-allowed; }
+button.link-like{ background:none; color:#fff; text-decoration:underline; font-weight:700; padding:4px; box-shadow:none; }
+main{ max-width:800px; margin:0 auto; padding:22px 20px 60px; }
+
+.selecao{ background:#fff; border:1px solid var(--cinza-300); border-radius:12px; padding:34px 30px; max-width:520px; margin:30px auto; }
+.selecao h2{ margin:0 0 6px; font-size:18px; color:var(--azul-900); }
+.selecao p{ margin:0 0 22px; font-size:13.5px; color:var(--cinza-600); line-height:1.5; }
+.campo-select{ margin-bottom:16px; }
+.campo-select label{ display:block; font-size:12.5px; font-weight:700; color:var(--cinza-600); margin-bottom:6px; }
+.campo-select select{
+  width:100%; padding:11px 14px; border-radius:8px; border:1.5px solid var(--cinza-300);
+  font-size:14px; font-family:inherit; background:#fff; color:var(--cinza-900);
+}
+.campo-select select:disabled{ background:var(--cinza-100); color:var(--cinza-600); }
+
+.folha{ background:#fff; border:1px solid var(--cinza-300); border-radius:10px; padding:30px 34px 26px; box-shadow:0 1px 4px rgba(20,30,50,.05); }
+.cabecalho-escola{ text-align:center; font-weight:800; font-size:14.5px; letter-spacing:.02em; margin-bottom:16px;}
+.linha-campo{ display:flex; gap:24px; font-size:13.5px; margin-bottom:9px; flex-wrap:wrap; }
+.linha-campo .campo{ flex:1; min-width:220px; border-bottom:1px solid var(--cinza-900); padding-bottom:4px; }
+.linha-campo .campo b{ font-weight:700; }
+.titulo-atividade{ text-align:center; font-weight:800; font-size:15.5px; text-transform:uppercase; letter-spacing:.03em; margin:18px 0 4px; color:var(--azul-900);}
+.subtitulo-atividade{ text-align:center; font-size:12px; color:var(--cinza-600); margin-bottom:20px; }
+.questao{ margin-bottom:18px; page-break-inside:avoid; }
+.questao .enun{ font-size:13.5px; font-weight:600; margin-bottom:4px; line-height:1.5;}
+.questao .enun .numero{ color:var(--azul-700); font-weight:800; margin-right:5px;}
+.alternativas{ list-style:none; margin:0; padding:0; }
+.alternativas li{
+  font-size:13px; line-height:1.4; position:relative;
+  padding:10px 14px 10px 38px; margin-bottom:9px; border-radius:9px;
+  background:linear-gradient(145deg, #ffffff, #eef1f5);
+  box-shadow:3px 3px 7px rgba(30,40,60,.16), -3px -3px 7px rgba(255,255,255,.85);
+  border:1px solid rgba(20,30,50,.05);
+  cursor:pointer; transition:transform .12s ease, box-shadow .12s ease, background .12s ease, color .12s ease;
+  user-select:none;
+}
+.alternativas li:hover{ transform:translateY(-1px); }
+.alternativas li .letra{
+  position:absolute; left:10px; top:50%; transform:translateY(-50%);
+  width:19px; height:19px; border-radius:5px; border:1.4px solid var(--cinza-900);
+  font-size:11px; font-weight:800; text-align:center; line-height:17px; background:#fff;
+  transition:background .12s ease, border-color .12s ease, color .12s ease;
+}
+.alternativas li.marcada{ background:#1b5e20; color:#fff; box-shadow:inset 2px 2px 6px rgba(0,0,0,.45), inset -2px -2px 5px rgba(255,255,255,.05); transform:translateY(1px); }
+.alternativas li.marcada .letra{ background:#1b5e20; border-color:#fff; color:#fff; }
+.aviso{ max-width:800px; margin:40px auto; background:#fff; border:1px solid var(--cinza-300); border-radius:10px; padding:26px; text-align:center; color:var(--cinza-600); }
+.rodape-envio{ margin-top:26px; padding-top:22px; border-top:2px solid var(--cinza-300); text-align:center; }
+.btn-enviar{
+  padding:13px 32px; background:var(--azul-700); color:#fff; font-weight:800;
+  border-radius:9px; font-size:15px; box-shadow:0 2px 8px rgba(26,60,110,.25);
+}
+.btn-enviar:hover{ background:var(--azul-900); }
+.btn-enviar:disabled{ background:var(--cinza-300); color:var(--cinza-600); cursor:not-allowed; box-shadow:none; }
+#statusEnvio{ margin-top:12px; font-size:13px; color:var(--cinza-600); }
+@media print{
+  header.top{ display:none !important; }
+  body{ background:#fff; }
+  main{ max-width:none; padding:0; margin:0; }
+  .folha{ box-shadow:none; border:none; border-radius:0; padding:10mm 14mm; }
+  .alternativas li{ box-shadow:none; background:#fff !important; color:#000 !important; border:1px solid var(--cinza-300); }
+  .alternativas li .letra{ background:#fff !important; color:#000 !important; border-color:#000 !important; }
+}
+
+.questao img{ max-width:100%; height:auto; border-radius:8px; margin:10px auto; display:block; box-shadow:0 2px 8px rgba(0,0,0,.1); }
+@media print{ .questao img{ box-shadow:none; border:1px solid var(--cinza-300); } }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="eyebrow">Ciências · Revisão em dupla</div>
+  <h1 id="tituloHeader">Atividade de Revisão</h1>
+  <p id="subHeader">Selecione sua turma e seu nome para abrir a atividade da sua dupla.</p>
+</header>
+<main id="main"></main>
+
+<script id="dados-turmas" type="application/json">
+{
+  "6oAno_A": {
+    "nomeTurma": "6ºAno A",
+    "duplas": [
+      {
+        "apoio": {
+          "nome": "Ana Barbara Saugo De Oliveira"
+        },
+        "mentor": {
+          "nome": "João Victor Fernandes Moraes"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Amanda Saldanha Cavalcante"
+        },
+        "mentor": {
+          "nome": "Nicoly Ferreira Goncalves"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Eduardo Antonio Lambert Goncalves"
+        },
+        "mentor": {
+          "nome": "Sarah Cavalcante Candido Da Silva"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Vinicíus Arthur Alves Da Silva"
+        },
+        "mentor": {
+          "nome": "Joao Pietro Rocha Oliveira"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Wallison Leonardo De Jesus Lessa"
+        },
+        "mentor": {
+          "nome": "Jullia Vitoria Alambert Gomes"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Kayque Vinicios Da Silva"
+        },
+        "mentor": {
+          "nome": "Luan Henrique De Almeida Tavares"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Ana Clara Correa Pinto"
+        },
+        "mentor": {
+          "nome": "Alicia De Souza Siqueira"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Joao Pierre Da Silva"
+        },
+        "mentor": {
+          "nome": "Fernanda Medeiros Fantini"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Murillo Carvalho Sales"
+        },
+        "mentor": {
+          "nome": "Sofia Soares De Oliveira"
+        }
+      }
+    ],
+    "questoes": [
+      {
+        "pergunta": "Durante a aula de Ciências, a turma observou que, em certos dias, a Lua parece \"apagar\" a luz do Sol por alguns minutos. Um eclipse solar ocorre quando:",
+        "alternativas": [
+          "A Lua fica exatamente entre o Sol e a Terra, bloqueando a luz solar",
+          "A Terra fica exatamente entre o Sol e a Lua",
+          "O Sol fica entre a Terra e a Lua",
+          "A Lua está em fase cheia e bem distante da Terra"
+        ],
+        "imagemSvg": "<img src=\"imagens/eclipse_solar.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "Os planetas do Sistema Solar giram há bilhões de anos ao redor do Sol sem se afastarem ou se chocarem uns com os outros. A força que mantém os planetas em órbita ao redor do Sol é:",
+        "alternativas": [
+          "A força elétrica",
+          "A força gravitacional",
+          "A força do vento solar",
+          "A força magnética da Lua"
+        ],
+        "imagemSvg": "<img src=\"imagens/sistema_solar_orbita.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "Perto de vulcões, é comum encontrar rochas escuras e muito duras que se formaram a partir do material expelido durante uma erupção. Rochas formadas pelo resfriamento e solidificação do magma são chamadas de:",
+        "alternativas": [
+          "Sedimentares",
+          "Metamórficas",
+          "Ígneas (magmáticas)",
+          "Fósseis"
+        ],
+        "imagemSvg": "<img src=\"imagens/vulcao_erupcao.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "Cientistas dividem o planeta Terra em diferentes camadas para estudar melhor seu funcionamento. A camada da Terra formada por toda a água do planeta (oceanos, rios, lagos e geleiras) é a:",
+        "alternativas": [
+          "Litosfera",
+          "Atmosfera",
+          "Hidrosfera",
+          "Biosfera"
+        ],
+        "imagemSvg": "<img src=\"imagens/terra_agua.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "Ao observar um pedaço de gelo-seco (CO₂ sólido) exposto ao ar, percebe-se que ele produz uma espécie de \"fumaça\" e desaparece, sem formar poças de água. A passagem direta do estado sólido para o gasoso, sem passar pelo líquido, é chamada de:",
+        "alternativas": [
+          "Fusão",
+          "Sublimação",
+          "Condensação",
+          "Solidificação"
+        ],
+        "imagemSvg": "<img src=\"imagens/gelo_seco.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "Em áreas onde a vegetação nativa foi retirada para dar lugar a plantações, os agricultores notam que, com o tempo, o solo perde nutrientes e fica mais suscetível à erosão pela chuva. Qual ação humana mais contribui para a perda da fertilidade e erosão do solo?",
+        "alternativas": [
+          "Rotação de culturas",
+          "Desmatamento e uso excessivo de agrotóxicos",
+          "Reflorestamento",
+          "Compostagem de resíduos orgânicos"
+        ],
+        "imagemSvg": "<img src=\"imagens/erosao_solo.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "Ao escavar uma região rochosa, pesquisadores encontraram restos de conchas e ossos preservados dentro de camadas de rocha muito antigas. Os fósseis são importantes para o estudo da história da Terra porque:",
+        "alternativas": [
+          "Mostram apenas rochas vulcânicas antigas",
+          "Registram evidências de seres vivos e ambientes de épocas passadas",
+          "Servem apenas para decoração",
+          "Não têm relação com a idade das rochas"
+        ],
+        "imagemSvg": "<img src=\"imagens/fossil_camadas.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "Enquanto um lado do planeta vive o dia, o outro lado vive a noite — e essa situação se alterna ao longo de aproximadamente 24 horas. A sucessão dos dias e das noites é causada principalmente pelo movimento de:",
+        "alternativas": [
+          "Translação da Terra ao redor do Sol",
+          "Rotação da Terra em torno do seu próprio eixo",
+          "Translação da Lua ao redor da Terra",
+          "Inclinação do eixo terrestre apenas"
+        ],
+        "imagemSvg": "<img src=\"imagens/dia_noite_terra.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "Muitos fósseis encontrados hoje pertencem a animais que viveram há milhões de anos e foram rapidamente cobertos por camadas de areia ou lama logo após a morte. Para que um ser vivo se transforme em fóssil, geralmente é necessário que:",
+        "alternativas": [
+          "Ele seja rapidamente coberto por sedimentos, dificultando sua decomposição total",
+          "Ele fique exposto ao ar livre por muitos anos",
+          "Ele seja aquecido a altas temperaturas imediatamente após a morte",
+          "Ele viva em ambientes desérticos apenas"
+        ],
+        "imagemSvg": "<img src=\"imagens/formacao_fossil.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "No Brasil, o verão costuma ser quente e com dias mais longos, enquanto no inverno os dias são mais curtos e frios. As estações do ano ocorrem principalmente devido a:",
+        "alternativas": [
+          "À distância variável entre a Terra e o Sol ao longo do ano",
+          "À inclinação do eixo da Terra combinada com o movimento de translação",
+          "Às fases da Lua",
+          "Ao movimento de rotação da Terra"
+        ],
+        "imagemSvg": "<img src=\"imagens/estacoes_ano.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      }
+    ]
+  },
+  "6oAno_C": {
+    "nomeTurma": "6ºAno C",
+    "duplas": [
+      {
+        "apoio": {
+          "nome": "Clara Jazmin Urdapilleta Gonzalez"
+        },
+        "mentor": {
+          "nome": "Ana Letícia Martins Da Silva"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Rosa Maria Oliveira Almeida"
+        },
+        "mentor": {
+          "nome": "Victor Eduardo Dos Santos"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Matheus Duarte Da Silva"
+        },
+        "mentor": {
+          "nome": "Arthur Deivid Da Silva Farias"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Agatha Rodrigues Miranda"
+        },
+        "mentor": {
+          "nome": "Ana Letícia Martins Da Silva"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Ana Clara Correa Pinto"
+        },
+        "mentor": {
+          "nome": "Victor Eduardo Dos Santos"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Isabela Severa Raulino"
+        },
+        "mentor": {
+          "nome": "Arthur Deivid Da Silva Farias"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Laurah Aparecida Candido De Oliveira"
+        },
+        "mentor": {
+          "nome": "Ana Letícia Martins Da Silva"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Raissa Mathias Andrade"
+        },
+        "mentor": {
+          "nome": "Victor Eduardo Dos Santos"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Talita Vitoria Vieira Nunes"
+        },
+        "mentor": {
+          "nome": "Arthur Deivid Da Silva Farias"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Cataryna Dos Santos"
+        },
+        "mentor": {
+          "nome": "Ana Letícia Martins Da Silva"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Sarah Livia Nunes Nascimento"
+        },
+        "mentor": {
+          "nome": "Victor Eduardo Dos Santos"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Maria Eduarda Araujo Garrido"
+        },
+        "mentor": {
+          "nome": "Arthur Deivid Da Silva Farias"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Lorenna Andrade De Oliveira"
+        },
+        "mentor": {
+          "nome": "Ana Letícia Martins Da Silva"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Joao Vitor Barbosa Pontes"
+        },
+        "mentor": {
+          "nome": "Victor Eduardo Dos Santos"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Emily Costa Pereira"
+        },
+        "mentor": {
+          "nome": "Arthur Deivid Da Silva Farias"
+        }
+      }
+    ],
+    "questoes": [
+      {
+        "pergunta": "Durante a aula de Ciências, a turma observou que, em certos dias, a Lua parece \"apagar\" a luz do Sol por alguns minutos. Um eclipse solar ocorre quando:",
+        "alternativas": [
+          "A Lua fica exatamente entre o Sol e a Terra, bloqueando a luz solar",
+          "A Terra fica exatamente entre o Sol e a Lua",
+          "O Sol fica entre a Terra e a Lua",
+          "A Lua está em fase cheia e bem distante da Terra"
+        ],
+        "imagemSvg": "<img src=\"imagens/eclipse_solar.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "Ao escavar uma região rochosa, pesquisadores encontraram restos de conchas e ossos preservados dentro de camadas de rocha muito antigas. Os fósseis são importantes para o estudo da história da Terra porque:",
+        "alternativas": [
+          "Mostram apenas rochas vulcânicas antigas",
+          "Registram evidências de seres vivos e ambientes de épocas passadas",
+          "Servem apenas para decoração",
+          "Não têm relação com a idade das rochas"
+        ],
+        "imagemSvg": "<img src=\"imagens/fossil_camadas.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "No Brasil, o verão costuma ser quente e com dias mais longos, enquanto no inverno os dias são mais curtos e frios. As estações do ano ocorrem principalmente devido a:",
+        "alternativas": [
+          "À distância variável entre a Terra e o Sol ao longo do ano",
+          "À inclinação do eixo da Terra combinada com o movimento de translação",
+          "Às fases da Lua",
+          "Ao movimento de rotação da Terra"
+        ],
+        "imagemSvg": "<img src=\"imagens/estacoes_ano.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "Até 2006, Plutão era considerado o nono planeta do Sistema Solar, mas hoje é classificado de outra forma pelos astrônomos. Qual das opções abaixo é um exemplo de planeta anão do Sistema Solar?",
+        "alternativas": [
+          "Marte",
+          "Plutão",
+          "Vênus",
+          "Júpiter"
+        ],
+        "imagemSvg": "<img src=\"imagens/plutao.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "Os planetas do Sistema Solar giram há bilhões de anos ao redor do Sol sem se afastarem ou se chocarem uns com os outros. A força que mantém os planetas em órbita ao redor do Sol é:",
+        "alternativas": [
+          "A força elétrica",
+          "A força gravitacional",
+          "A força do vento solar",
+          "A força magnética da Lua"
+        ],
+        "imagemSvg": "<img src=\"imagens/sistema_solar_orbita.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "Em áreas onde a vegetação nativa foi retirada para dar lugar a plantações, os agricultores notam que, com o tempo, o solo perde nutrientes e fica mais suscetível à erosão pela chuva. Qual ação humana mais contribui para a perda da fertilidade e erosão do solo?",
+        "alternativas": [
+          "Rotação de culturas",
+          "Desmatamento e uso excessivo de agrotóxicos",
+          "Reflorestamento",
+          "Compostagem de resíduos orgânicos"
+        ],
+        "imagemSvg": "<img src=\"imagens/erosao_solo.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "Enquanto um lado do planeta vive o dia, o outro lado vive a noite — e essa situação se alterna ao longo de aproximadamente 24 horas. A sucessão dos dias e das noites é causada principalmente pelo movimento de:",
+        "alternativas": [
+          "Translação da Terra ao redor do Sol",
+          "Rotação da Terra em torno do seu próprio eixo",
+          "Translação da Lua ao redor da Terra",
+          "Inclinação do eixo terrestre apenas"
+        ],
+        "imagemSvg": "<img src=\"imagens/dia_noite_terra.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "Perto de vulcões, é comum encontrar rochas escuras e muito duras que se formaram a partir do material expelido durante uma erupção. Rochas formadas pelo resfriamento e solidificação do magma são chamadas de:",
+        "alternativas": [
+          "Sedimentares",
+          "Metamórficas",
+          "Ígneas (magmáticas)",
+          "Fósseis"
+        ],
+        "imagemSvg": "<img src=\"imagens/vulcao_erupcao.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "Cientistas dividem o planeta Terra em diferentes camadas para estudar melhor seu funcionamento. A camada da Terra formada por toda a água do planeta (oceanos, rios, lagos e geleiras) é a:",
+        "alternativas": [
+          "Litosfera",
+          "Atmosfera",
+          "Hidrosfera",
+          "Biosfera"
+        ],
+        "imagemSvg": "<img src=\"imagens/terra_agua.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "Ao observar um pedaço de gelo-seco (CO₂ sólido) exposto ao ar, percebe-se que ele produz uma espécie de \"fumaça\" e desaparece, sem formar poças de água. A passagem direta do estado sólido para o gasoso, sem passar pelo líquido, é chamada de:",
+        "alternativas": [
+          "Fusão",
+          "Sublimação",
+          "Condensação",
+          "Solidificação"
+        ],
+        "imagemSvg": "<img src=\"imagens/gelo_seco.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      }
+    ]
+  },
+  "7oAno_A": {
+    "nomeTurma": "7ºAno A",
+    "duplas": [
+      {
+        "apoio": {
+          "nome": "Isabelly Sophia Vieira Lima"
+        },
+        "mentor": {
+          "nome": "Ágatha Campos De Sousa"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Albert Barros Cardoso"
+        },
+        "mentor": {
+          "nome": "Fhelipe Oliveira Caetano Pereira"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Yasmin Cristina Pereira Correia"
+        },
+        "mentor": {
+          "nome": "Maysa Correia De Oliveira"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Kauany Nikely Cardoso Da Silva"
+        },
+        "mentor": {
+          "nome": "Raphael Correa Azevedo"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Isabelly Vitoria Da Silva Moreira"
+        },
+        "mentor": {
+          "nome": "Ryan Freitas Ferreira"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Luan Caio Lopes De Lima"
+        },
+        "mentor": {
+          "nome": "Ariane Dias Soares"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Yasmim Mangili Silva"
+        },
+        "mentor": {
+          "nome": "Jean Paulo Martins Da Silva"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Yasmim Novaes Soares"
+        },
+        "mentor": {
+          "nome": "Crysthopher Pierre Cavalcante Rubira"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Maysa Fernanda De Oliveira Carvalho"
+        },
+        "mentor": {
+          "nome": "Otavio Do Nascimento Conceicao"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Alexia Lohana Costa De Oliveira"
+        },
+        "mentor": {
+          "nome": "Ágatha Campos De Sousa"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Pedro Brandao Santos"
+        },
+        "mentor": {
+          "nome": "Fhelipe Oliveira Caetano Pereira"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Geovanna Nevile Dias"
+        },
+        "mentor": {
+          "nome": "Maysa Correia De Oliveira"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Saymon Gabriel De Jesus Barbosa"
+        },
+        "mentor": {
+          "nome": "Raphael Correa Azevedo"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Bryan Olliver Teixeira Rodrigues De Salles"
+        },
+        "mentor": {
+          "nome": "Ryan Freitas Ferreira"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Isabella De Souza Silva"
+        },
+        "mentor": {
+          "nome": "Ariane Dias Soares"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Kettellen Vitoria Da Silva Cardoso"
+        },
+        "mentor": {
+          "nome": "Jean Paulo Martins Da Silva"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Rafaella Victoria Abreu Dos Anjos"
+        },
+        "mentor": {
+          "nome": "Crysthopher Pierre Cavalcante Rubira"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Emanuella Ribeiro Mafra"
+        },
+        "mentor": {
+          "nome": "Otavio Do Nascimento Conceicao"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Jádina Coelho Abade"
+        },
+        "mentor": {
+          "nome": "Ágatha Campos De Sousa"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Luiz Henrique Da Silva França"
+        },
+        "mentor": {
+          "nome": "Fhelipe Oliveira Caetano Pereira"
+        }
+      }
+    ],
+    "questoes": [
+      {
+        "pergunta": "Em regiões próximas às bordas de placas tectônicas, como o chamado \"Círculo de Fogo do Pacífico\", os tremores de terra são muito frequentes. Terremotos são causados, principalmente, por:",
+        "alternativas": [
+          "O acúmulo de nuvens na atmosfera",
+          "O choque e atrito entre placas tectônicas",
+          "O derretimento das geleiras",
+          "A variação da maré"
+        ],
+        "imagemSvg": "<img src=\"imagens/placas_tectonicas.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "No parquinho, duas crianças de pesos diferentes conseguem se equilibrar em um brinquedo ajustando a posição em que se sentam. Uma gangorra é um exemplo de qual tipo de máquina simples?",
+        "alternativas": [
+          "Plano inclinado",
+          "Roldana",
+          "Alavanca",
+          "Parafuso"
+        ],
+        "imagemSvg": "<img src=\"imagens/gangorra.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "Embora o oxigênio seja essencial para a respiração, ele não é o gás mais abundante na atmosfera terrestre. O principal gás da atmosfera terrestre, em volume, é:",
+        "alternativas": [
+          "Oxigênio",
+          "Gás carbônico",
+          "Nitrogênio",
+          "Hidrogênio"
+        ],
+        "imagemSvg": "<img src=\"imagens/composicao_atmosfera.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "Ao observar uma fruta esquecida por vários dias, é possível ver fungos se desenvolvendo sobre ela até que se decomponha por completo. Os microrganismos decompositores (como fungos e bactérias) são importantes porque:",
+        "alternativas": [
+          "Causam apenas doenças",
+          "Reciclam a matéria orgânica, devolvendo nutrientes ao ambiente",
+          "Não têm nenhuma função ecológica",
+          "Servem apenas para fabricar remédios"
+        ],
+        "imagemSvg": "<img src=\"imagens/decompositores.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "Uma cooperativa de agricultores decidiu limitar a quantidade de árvores cortadas por ano e reflorestar áreas já exploradas, garantindo produção também no futuro. Uma ação que representa desenvolvimento sustentável é:",
+        "alternativas": [
+          "Explorar recursos naturais sem limites para gerar lucro imediato",
+          "Usar recursos naturais de forma equilibrada, garantindo-os também para gerações futuras",
+          "Ignorar os impactos ambientais em nome do crescimento econômico",
+          "Aumentar o desmatamento para expandir áreas agrícolas"
+        ],
+        "imagemSvg": "<img src=\"imagens/desenvolvimento_sustentavel.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "Em grandes centros urbanos, com muitos carros e indústrias, é comum notar uma névoa acinzentada no horizonte em dias de pouco vento. A poluição do ar em grandes cidades está mais associada a qual problema de saúde?",
+        "alternativas": [
+          "Fraturas ósseas",
+          "Doenças respiratórias, como bronquite e asma",
+          "Cáries dentárias",
+          "Problemas de visão"
+        ],
+        "imagemSvg": "<img src=\"imagens/poluicao_ar.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "Nos últimos 100 anos, a temperatura média do planeta aumentou de forma acelerada, coincidindo com o crescimento do uso de carros, indústrias e usinas termelétricas. A queima de combustíveis fósseis (como petróleo e carvão) contribui para as mudanças climáticas porque:",
+        "alternativas": [
+          "Reduz o efeito estufa",
+          "Libera gases que intensificam o efeito estufa, elevando a temperatura média do planeta",
+          "Não interfere na composição da atmosfera",
+          "Aumenta apenas a umidade do ar"
+        ],
+        "imagemSvg": "<img src=\"imagens/efeito_estufa.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "Observando um mapa-múndi, é possível notar que o litoral leste da América do Sul parece \"encaixar\" no litoral oeste da África, como peças de um quebra-cabeça. A teoria da deriva continental propõe que:",
+        "alternativas": [
+          "Os continentes sempre estiveram na posição atual",
+          "Os continentes se movem lentamente ao longo do tempo geológico, e já estiveram unidos",
+          "Apenas os oceanos se movimentam",
+          "Os continentes afundam e nunca se movem lateralmente"
+        ],
+        "imagemSvg": "<img src=\"imagens/deriva_continental.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "Ao cavar a terra do jardim, é comum encontrar pequenos animais sem esqueleto interno, como minhocas e insetos. Um exemplo de animal invertebrado é:",
+        "alternativas": [
+          "Cachorro",
+          "Minhoca",
+          "Sapo",
+          "Tubarão"
+        ],
+        "imagemSvg": "<img src=\"imagens/minhoca_invertebrado.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "Sem nenhum gás na atmosfera capaz de reter calor, as noites na Terra seriam extremamente frias, como ocorre na Lua. O efeito estufa é um fenômeno natural que se torna um problema ambiental quando:",
+        "alternativas": [
+          "Deixa de existir na atmosfera",
+          "É intensificado pelo aumento de gases poluentes, elevando a temperatura da Terra além do normal",
+          "Ocorre apenas à noite",
+          "É controlado totalmente pelas florestas"
+        ],
+        "imagemSvg": "<img src=\"imagens/efeito_estufa.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      }
+    ]
+  },
+  "7oAno_B": {
+    "nomeTurma": "7ºAno B",
+    "duplas": [
+      {
+        "apoio": {
+          "nome": "Jhulia Fernanda Mendes"
+        },
+        "mentor": {
+          "nome": "Lohana Gabriely Goncalves Da Silva"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Erick Roberto Estevam Oliveira"
+        },
+        "mentor": {
+          "nome": "Fernanda Marcos Soares"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Bruno Henrique Serafim"
+        },
+        "mentor": {
+          "nome": "Anayara Fernandes Da Costa"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Beatriz Nascimento Alves"
+        },
+        "mentor": {
+          "nome": "Milena Karoline Alves Costa"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Alex Roberto Barboza De Carvalho"
+        },
+        "mentor": {
+          "nome": "Mayra Correia De Oliveira"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Ana Cecilia Leao De Almeida"
+        },
+        "mentor": {
+          "nome": "Davy Miguel Benvindo Correia"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Laryssa Xavier De Souza"
+        },
+        "mentor": {
+          "nome": "Ruam Macolly De Almeida Santos"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Jenifer Medeiros Alves"
+        },
+        "mentor": {
+          "nome": "Manoella Freitas Soares"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Abraao Junior Sousa Batista"
+        },
+        "mentor": {
+          "nome": "Matheus Lopes Ferreira"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Guilherme Camargo Mota"
+        },
+        "mentor": {
+          "nome": "Bernardo Benjamin De Sousa Moreira"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Hederson Fernando Felix De Souza"
+        },
+        "mentor": {
+          "nome": "Felipe Wendel Gonçalves Dos Santos"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Sophia Evangelista Cobra De Carvalho"
+        },
+        "mentor": {
+          "nome": "Daniel Rocha Costa"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Guilherme De Brito Rocha"
+        },
+        "mentor": {
+          "nome": "Kenneth Bartholomew Kosh Iv"
+        }
+      }
+    ],
+    "questoes": [
+      {
+        "pergunta": "Em grandes centros urbanos, com muitos carros e indústrias, é comum notar uma névoa acinzentada no horizonte em dias de pouco vento. A poluição do ar em grandes cidades está mais associada a qual problema de saúde?",
+        "alternativas": [
+          "Fraturas ósseas",
+          "Doenças respiratórias, como bronquite e asma",
+          "Cáries dentárias",
+          "Problemas de visão"
+        ],
+        "imagemSvg": "<img src=\"imagens/poluicao_ar.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "No parquinho, duas crianças de pesos diferentes conseguem se equilibrar em um brinquedo ajustando a posição em que se sentam. Uma gangorra é um exemplo de qual tipo de máquina simples?",
+        "alternativas": [
+          "Plano inclinado",
+          "Roldana",
+          "Alavanca",
+          "Parafuso"
+        ],
+        "imagemSvg": "<img src=\"imagens/gangorra.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "Ao observar uma fruta esquecida por vários dias, é possível ver fungos se desenvolvendo sobre ela até que se decomponha por completo. Os microrganismos decompositores (como fungos e bactérias) são importantes porque:",
+        "alternativas": [
+          "Causam apenas doenças",
+          "Reciclam a matéria orgânica, devolvendo nutrientes ao ambiente",
+          "Não têm nenhuma função ecológica",
+          "Servem apenas para fabricar remédios"
+        ],
+        "imagemSvg": "<img src=\"imagens/decompositores.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "Ao cavar a terra do jardim, é comum encontrar pequenos animais sem esqueleto interno, como minhocas e insetos. Um exemplo de animal invertebrado é:",
+        "alternativas": [
+          "Cachorro",
+          "Minhoca",
+          "Sapo",
+          "Tubarão"
+        ],
+        "imagemSvg": "<img src=\"imagens/minhoca_invertebrado.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "Nos últimos 100 anos, a temperatura média do planeta aumentou de forma acelerada, coincidindo com o crescimento do uso de carros, indústrias e usinas termelétricas. A queima de combustíveis fósseis (como petróleo e carvão) contribui para as mudanças climáticas porque:",
+        "alternativas": [
+          "Reduz o efeito estufa",
+          "Libera gases que intensificam o efeito estufa, elevando a temperatura média do planeta",
+          "Não interfere na composição da atmosfera",
+          "Aumenta apenas a umidade do ar"
+        ],
+        "imagemSvg": "<img src=\"imagens/efeito_estufa.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "Embora o oxigênio seja essencial para a respiração, ele não é o gás mais abundante na atmosfera terrestre. O principal gás da atmosfera terrestre, em volume, é:",
+        "alternativas": [
+          "Oxigênio",
+          "Gás carbônico",
+          "Nitrogênio",
+          "Hidrogênio"
+        ],
+        "imagemSvg": "<img src=\"imagens/composicao_atmosfera.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "Uma cooperativa de agricultores decidiu limitar a quantidade de árvores cortadas por ano e reflorestar áreas já exploradas, garantindo produção também no futuro. Uma ação que representa desenvolvimento sustentável é:",
+        "alternativas": [
+          "Explorar recursos naturais sem limites para gerar lucro imediato",
+          "Usar recursos naturais de forma equilibrada, garantindo-os também para gerações futuras",
+          "Ignorar os impactos ambientais em nome do crescimento econômico",
+          "Aumentar o desmatamento para expandir áreas agrícolas"
+        ],
+        "imagemSvg": "<img src=\"imagens/desenvolvimento_sustentavel.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "Observando um mapa-múndi, é possível notar que o litoral leste da América do Sul parece \"encaixar\" no litoral oeste da África, como peças de um quebra-cabeça. A teoria da deriva continental propõe que:",
+        "alternativas": [
+          "Os continentes sempre estiveram na posição atual",
+          "Os continentes se movem lentamente ao longo do tempo geológico, e já estiveram unidos",
+          "Apenas os oceanos se movimentam",
+          "Os continentes afundam e nunca se movem lateralmente"
+        ],
+        "imagemSvg": "<img src=\"imagens/deriva_continental.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "Em regiões próximas às bordas de placas tectônicas, como o chamado \"Círculo de Fogo do Pacífico\", os tremores de terra são muito frequentes. Terremotos são causados, principalmente, por:",
+        "alternativas": [
+          "O acúmulo de nuvens na atmosfera",
+          "O choque e atrito entre placas tectônicas",
+          "O derretimento das geleiras",
+          "A variação da maré"
+        ],
+        "imagemSvg": "<img src=\"imagens/placas_tectonicas.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "Sem nenhum gás na atmosfera capaz de reter calor, as noites na Terra seriam extremamente frias, como ocorre na Lua. O efeito estufa é um fenômeno natural que se torna um problema ambiental quando:",
+        "alternativas": [
+          "Deixa de existir na atmosfera",
+          "É intensificado pelo aumento de gases poluentes, elevando a temperatura da Terra além do normal",
+          "Ocorre apenas à noite",
+          "É controlado totalmente pelas florestas"
+        ],
+        "imagemSvg": "<img src=\"imagens/efeito_estufa.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      }
+    ]
+  },
+  "8oAno_A": {
+    "nomeTurma": "8ºAno A",
+    "duplas": [
+      {
+        "apoio": {
+          "nome": "Nicolas Rocha Silva"
+        },
+        "mentor": {
+          "nome": "Pedro Henrique Correa De Brito"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Samuel Alves Da Costa"
+        },
+        "mentor": {
+          "nome": "Mayara Caetano De Oliveira Pina"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Kelvin Duarte Goncalves"
+        },
+        "mentor": {
+          "nome": "Bryan Diniz Silva"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Lucas Eduardo Da Silva Santana"
+        },
+        "mentor": {
+          "nome": "Miguel Lima De Mesquita"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Victor Henrique Benvindo"
+        },
+        "mentor": {
+          "nome": "Thays Rodrigues Da Silva"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Pedro Leonardo De Andrade Marques"
+        },
+        "mentor": {
+          "nome": "Laura Vitoria Rocha"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Isaac Fernandes De Andrade"
+        },
+        "mentor": {
+          "nome": "Evandro Cutolo Teixeira"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Paolla Michelline Dos Santos Marques"
+        },
+        "mentor": {
+          "nome": "Sophia Lacerda Andrade"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Gustavo Henrique Da Silva"
+        },
+        "mentor": {
+          "nome": "Ana Luiza Valenca Paiva"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Manoella Dos Anjos Santos"
+        },
+        "mentor": {
+          "nome": "Sofia Azeredo Cubas"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Raphael Mathias Nunes Miranda"
+        },
+        "mentor": {
+          "nome": "Matheus Kauã Dos Santos Nascimento"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Ryan Gabriel Pereira De Sousa"
+        },
+        "mentor": {
+          "nome": "Thaylla Duanny Venancio Scaquito"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Carlos Eduardo Menezes Machado"
+        },
+        "mentor": {
+          "nome": "Pedro Henrique Correa De Brito"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Quézia Do Espirito Santo Roberti"
+        },
+        "mentor": {
+          "nome": "Mayara Caetano De Oliveira Pina"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Diogo Da Silva Veloso"
+        },
+        "mentor": {
+          "nome": "Bryan Diniz Silva"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Kemillyn Andrade De Souza Silva"
+        },
+        "mentor": {
+          "nome": "Miguel Lima De Mesquita"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Alice Cardoso De Alcantara"
+        },
+        "mentor": {
+          "nome": "Thays Rodrigues Da Silva"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Gabriela Santos Costa"
+        },
+        "mentor": {
+          "nome": "Laura Vitoria Rocha"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Guilherme Carmo Rodrigues"
+        },
+        "mentor": {
+          "nome": "Evandro Cutolo Teixeira"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Rafael Henrique Siqueira Bernardes Zia"
+        },
+        "mentor": {
+          "nome": "Sophia Lacerda Andrade"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Leticia Custodio Lima"
+        },
+        "mentor": {
+          "nome": "Ana Luiza Valenca Paiva"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Mariana Charrua Gaia Mion Silva"
+        },
+        "mentor": {
+          "nome": "Sofia Azeredo Cubas"
+        }
+      }
+    ],
+    "questoes": [
+      {
+        "pergunta": "Ao respirar, o ar percorre um longo caminho até chegar a estruturas microscópicas dentro dos pulmões, onde finalmente é absorvido pelo sangue. A troca gasosa entre o ar e o sangue ocorre principalmente:",
+        "alternativas": [
+          "Na traqueia",
+          "Nos alvéolos pulmonares",
+          "Na laringe",
+          "Nas fossas nasais"
+        ],
+        "imagemSvg": "<img src=\"imagens/alveolos_pulmonares.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "Campanhas de saúde pública costumam distribuir preservativos gratuitamente em postos de saúde como principal estratégia de prevenção a doenças transmitidas por contato sexual. Qual é a forma mais eficaz de prevenir a maioria das Infecções Sexualmente Transmissíveis (ISTs)?",
+        "alternativas": [
+          "Uso de preservativo (camisinha) em todas as relações sexuais",
+          "Tomar apenas vitaminas",
+          "Evitar exercícios físicos",
+          "Usar apenas anticoncepcional oral"
+        ],
+        "imagemSvg": "<img src=\"imagens/preservativo.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "Depois de mastigado e misturado com sucos gástricos no estômago, o alimento segue para um longo órgão enovelado, onde a maior parte dos nutrientes é absorvida para o sangue. A maior parte da absorção dos nutrientes dos alimentos ocorre em qual órgão?",
+        "alternativas": [
+          "Estômago",
+          "Intestino delgado",
+          "Intestino grosso",
+          "Esôfago"
+        ],
+        "imagemSvg": "<img src=\"imagens/intestino_delgado.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "Ao medir os batimentos cardíacos após uma corrida, percebemos que o coração bate mais rápido para atender à maior demanda de oxigênio dos músculos. A principal função do coração no sistema cardiovascular é:",
+        "alternativas": [
+          "Produzir hormônios digestivos",
+          "Bombear o sangue por todo o corpo",
+          "Filtrar o ar respirado",
+          "Armazenar bile"
+        ],
+        "imagemSvg": "<img src=\"imagens/coracao.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "Antes de uma prova de corrida, muitos atletas comem massas (como pães e macarrão) para \"carregar\" o corpo de energia rápida. Os carboidratos são nutrientes cuja principal função no organismo é:",
+        "alternativas": [
+          "Fornecer energia rápida para o corpo",
+          "Formar os ossos",
+          "Transportar oxigênio no sangue",
+          "Regular apenas a temperatura corporal"
+        ],
+        "imagemSvg": "<img src=\"imagens/carboidratos.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "Ao visitar uma flor em busca de néctar, uma abelha acaba carregando grãos amarelados pelo corpo e os transportando para outras flores da mesma espécie. A polinização é um processo importante para as plantas com flores porque:",
+        "alternativas": [
+          "Impede a formação de frutos",
+          "Transporta o pólen até o órgão reprodutor feminino, possibilitando a fecundação",
+          "Serve apenas para atrair predadores",
+          "Não tem relação com a reprodução"
+        ],
+        "imagemSvg": "<img src=\"imagens/polinizacao.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "Moradores de regiões muito poluídas apresentam, com mais frequência, tosse persistente e crises de falta de ar. A inalação constante de ar poluído por partículas finas pode levar, ao longo do tempo, a:",
+        "alternativas": [
+          "Fortalecimento dos pulmões",
+          "Inflamação e agravamento de doenças respiratórias crônicas",
+          "Melhora da capacidade pulmonar",
+          "Nenhum efeito à saúde"
+        ],
+        "imagemSvg": "<img src=\"imagens/poluicao_ar.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "Entre os métodos disponíveis para evitar a gravidez, apenas um também oferece proteção contra a maioria das infecções sexualmente transmissíveis. Qual é o único método contraceptivo que também previne a maioria das Infecções Sexualmente Transmissíveis (ISTs)?",
+        "alternativas": [
+          "Pílula anticoncepcional",
+          "DIU",
+          "Preservativo (camisinha)",
+          "Tabelinha"
+        ],
+        "imagemSvg": "<img src=\"imagens/preservativo.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "Nutricionistas costumam recomendar que o prato de refeições inclua legumes, verduras, proteínas e carboidratos, evitando o exagero de itens ultraprocessados. Uma alimentação saudável e equilibrada deve, de forma geral:",
+        "alternativas": [
+          "Ser baseada apenas em alimentos industrializados",
+          "Incluir variedade de grupos alimentares, com predominância de alimentos in natura",
+          "Excluir totalmente carboidratos e gorduras",
+          "Ser igual para todas as pessoas, sem exceção"
+        ],
+        "imagemSvg": "<img src=\"imagens/prato_saudavel.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "Bactérias se dividem em cópias idênticas de si mesmas, enquanto animais como os cães precisam de um macho e uma fêmea para gerar filhotes diferentes entre si. Uma vantagem da reprodução sexuada em relação à assexuada é:",
+        "alternativas": [
+          "Gerar descendentes geneticamente idênticos ao progenitor",
+          "Aumentar a variabilidade genética da população, favorecendo a adaptação",
+          "Ser sempre mais rápida",
+          "Não depender de dois indivíduos"
+        ],
+        "imagemSvg": "<img src=\"imagens/reproducao_sexuada_assexuada.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      }
+    ]
+  },
+  "8oAno_B": {
+    "nomeTurma": "8ºAno B",
+    "duplas": [
+      {
+        "apoio": {
+          "nome": "Marcos Celio De Jesus"
+        },
+        "mentor": {
+          "nome": "Pietro Martins Nobre"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Wallif Leandro De Jesus Lessa"
+        },
+        "mentor": {
+          "nome": "Luan Ribeiro Silva"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Julia Vitoria Severa Lins"
+        },
+        "mentor": {
+          "nome": "Fabricio Lorenzo Parma"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Kesia Dos Santos Soste"
+        },
+        "mentor": {
+          "nome": "Victor Hugo Prado Santos De Barros"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Cristiano Marques Batista De Souza"
+        },
+        "mentor": {
+          "nome": "Pietro Martins Nobre"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Paulo Cesar Lambert Gonçalves"
+        },
+        "mentor": {
+          "nome": "Luan Ribeiro Silva"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Angello Gabriel Cutolo Teixeira"
+        },
+        "mentor": {
+          "nome": "Fabricio Lorenzo Parma"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Luan Dantas Nicolucci"
+        },
+        "mentor": {
+          "nome": "Victor Hugo Prado Santos De Barros"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Maria Eduarda Machado De Lima"
+        },
+        "mentor": {
+          "nome": "Pietro Martins Nobre"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Marcelo Gomes Thomaz"
+        },
+        "mentor": {
+          "nome": "Luan Ribeiro Silva"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Arthur Henrique Marques Endres"
+        },
+        "mentor": {
+          "nome": "Fabricio Lorenzo Parma"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Laura Borges Azevedo"
+        },
+        "mentor": {
+          "nome": "Victor Hugo Prado Santos De Barros"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Jhonas Keyrrison Trocatis Da Silva"
+        },
+        "mentor": {
+          "nome": "Pietro Martins Nobre"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Bruno Luiz Nascimento Da Silva"
+        },
+        "mentor": {
+          "nome": "Luan Ribeiro Silva"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Gabriela Paulina Ferreira Martins"
+        },
+        "mentor": {
+          "nome": "Fabricio Lorenzo Parma"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Hyllary Victoria Nercir De França"
+        },
+        "mentor": {
+          "nome": "Victor Hugo Prado Santos De Barros"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Daniel Rodrigues Santos Dias"
+        },
+        "mentor": {
+          "nome": "Pietro Martins Nobre"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Isaac Bonfim Vidotto"
+        },
+        "mentor": {
+          "nome": "Luan Ribeiro Silva"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Brayan Duarte Da Silva"
+        },
+        "mentor": {
+          "nome": "Fabricio Lorenzo Parma"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Sophia Franca De Carvalho"
+        },
+        "mentor": {
+          "nome": "Victor Hugo Prado Santos De Barros"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Ester Codina De Jesus"
+        },
+        "mentor": {
+          "nome": "Pietro Martins Nobre"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Mateus De Jesus Jacinto Dos Santos"
+        },
+        "mentor": {
+          "nome": "Luan Ribeiro Silva"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Bianca Cristina Da Silva Santos"
+        },
+        "mentor": {
+          "nome": "Fabricio Lorenzo Parma"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Diego Barrio Novo Amaral De Andrade"
+        },
+        "mentor": {
+          "nome": "Victor Hugo Prado Santos De Barros"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Khiara De Oliveira Silva"
+        },
+        "mentor": {
+          "nome": "Pietro Martins Nobre"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Brayan Da Silva Ferreira"
+        },
+        "mentor": {
+          "nome": "Luan Ribeiro Silva"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Pablo Henrique Duarte Da Silva"
+        },
+        "mentor": {
+          "nome": "Fabricio Lorenzo Parma"
+        }
+      }
+    ],
+    "questoes": [
+      {
+        "pergunta": "Campanhas de saúde pública costumam distribuir preservativos gratuitamente em postos de saúde como principal estratégia de prevenção a doenças transmitidas por contato sexual. Qual é a forma mais eficaz de prevenir a maioria das Infecções Sexualmente Transmissíveis (ISTs)?",
+        "alternativas": [
+          "Uso de preservativo (camisinha) em todas as relações sexuais",
+          "Tomar apenas vitaminas",
+          "Evitar exercícios físicos",
+          "Usar apenas anticoncepcional oral"
+        ],
+        "imagemSvg": "<img src=\"imagens/preservativo.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "Depois de mastigado e misturado com sucos gástricos no estômago, o alimento segue para um longo órgão enovelado, onde a maior parte dos nutrientes é absorvida para o sangue. A maior parte da absorção dos nutrientes dos alimentos ocorre em qual órgão?",
+        "alternativas": [
+          "Estômago",
+          "Intestino delgado",
+          "Intestino grosso",
+          "Esôfago"
+        ],
+        "imagemSvg": "<img src=\"imagens/intestino_delgado.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "Antes de uma prova de corrida, muitos atletas comem massas (como pães e macarrão) para \"carregar\" o corpo de energia rápida. Os carboidratos são nutrientes cuja principal função no organismo é:",
+        "alternativas": [
+          "Fornecer energia rápida para o corpo",
+          "Formar os ossos",
+          "Transportar oxigênio no sangue",
+          "Regular apenas a temperatura corporal"
+        ],
+        "imagemSvg": "<img src=\"imagens/carboidratos.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "Ao respirar, o ar percorre um longo caminho até chegar a estruturas microscópicas dentro dos pulmões, onde finalmente é absorvido pelo sangue. A troca gasosa entre o ar e o sangue ocorre principalmente:",
+        "alternativas": [
+          "Na traqueia",
+          "Nos alvéolos pulmonares",
+          "Na laringe",
+          "Nas fossas nasais"
+        ],
+        "imagemSvg": "<img src=\"imagens/alveolos_pulmonares.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "Bactérias se dividem em cópias idênticas de si mesmas, enquanto animais como os cães precisam de um macho e uma fêmea para gerar filhotes diferentes entre si. Uma vantagem da reprodução sexuada em relação à assexuada é:",
+        "alternativas": [
+          "Gerar descendentes geneticamente idênticos ao progenitor",
+          "Aumentar a variabilidade genética da população, favorecendo a adaptação",
+          "Ser sempre mais rápida",
+          "Não depender de dois indivíduos"
+        ],
+        "imagemSvg": "<img src=\"imagens/reproducao_sexuada_assexuada.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "Ao medir os batimentos cardíacos após uma corrida, percebemos que o coração bate mais rápido para atender à maior demanda de oxigênio dos músculos. A principal função do coração no sistema cardiovascular é:",
+        "alternativas": [
+          "Produzir hormônios digestivos",
+          "Bombear o sangue por todo o corpo",
+          "Filtrar o ar respirado",
+          "Armazenar bile"
+        ],
+        "imagemSvg": "<img src=\"imagens/coracao.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "Ao visitar uma flor em busca de néctar, uma abelha acaba carregando grãos amarelados pelo corpo e os transportando para outras flores da mesma espécie. A polinização é um processo importante para as plantas com flores porque:",
+        "alternativas": [
+          "Impede a formação de frutos",
+          "Transporta o pólen até o órgão reprodutor feminino, possibilitando a fecundação",
+          "Serve apenas para atrair predadores",
+          "Não tem relação com a reprodução"
+        ],
+        "imagemSvg": "<img src=\"imagens/polinizacao.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "Entre os métodos disponíveis para evitar a gravidez, apenas um também oferece proteção contra a maioria das infecções sexualmente transmissíveis. Qual é o único método contraceptivo que também previne a maioria das Infecções Sexualmente Transmissíveis (ISTs)?",
+        "alternativas": [
+          "Pílula anticoncepcional",
+          "DIU",
+          "Preservativo (camisinha)",
+          "Tabelinha"
+        ],
+        "imagemSvg": "<img src=\"imagens/preservativo.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "Nutricionistas costumam recomendar que o prato de refeições inclua legumes, verduras, proteínas e carboidratos, evitando o exagero de itens ultraprocessados. Uma alimentação saudável e equilibrada deve, de forma geral:",
+        "alternativas": [
+          "Ser baseada apenas em alimentos industrializados",
+          "Incluir variedade de grupos alimentares, com predominância de alimentos in natura",
+          "Excluir totalmente carboidratos e gorduras",
+          "Ser igual para todas as pessoas, sem exceção"
+        ],
+        "imagemSvg": "<img src=\"imagens/prato_saudavel.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "Durante os anos finais do Ensino Fundamental, muitos estudantes notam mudanças rápidas no corpo, no humor e nas relações sociais. As mudanças físicas, emocionais e sociais que ocorrem durante a adolescência estão relacionadas principalmente a:",
+        "alternativas": [
+          "Apenas fatores genéticos, sem influência hormonal",
+          "Alterações hormonais da puberdade, combinadas a fatores psicológicos e sociais",
+          "Fatores exclusivamente ambientais",
+          "Nenhuma mudança relevante nessa fase"
+        ],
+        "imagemSvg": "<img src=\"imagens/puberdade.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      }
+    ]
+  },
+  "9oAno_A": {
+    "nomeTurma": "9ºAno A",
+    "duplas": [
+      {
+        "apoio": {
+          "nome": "Eduarda Alves De Souza"
+        },
+        "mentor": {
+          "nome": "Henrique Rocha Carvalhal"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Yuri Gabriel De Moraes Pongolino"
+        },
+        "mentor": {
+          "nome": "Raul Henrique Crus Baptista"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Andrielle Fernandes Da Costa"
+        },
+        "mentor": {
+          "nome": "Kauanny Aparecida Malaquias Lima"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Evellyn Alves Da Silva"
+        },
+        "mentor": {
+          "nome": "Miguel Martins De Assis"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Sarah Vitoria Alves Oliveira"
+        },
+        "mentor": {
+          "nome": "Matheus Turchetto"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Omran Rasekh"
+        },
+        "mentor": {
+          "nome": "Amanda Passos De Almeida"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Ana Clara Sousa Da Costa"
+        },
+        "mentor": {
+          "nome": "Luana Karoline Martins De Oliveira"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Leonardo De Avelar Carvalho"
+        },
+        "mentor": {
+          "nome": "Arthur Davi De Souza Fernandes"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Evellyn Yasmin Tavares Silva"
+        },
+        "mentor": {
+          "nome": "Felipe De Souza Rodrigues"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Igor Martins Pereira"
+        },
+        "mentor": {
+          "nome": "Livia Oliveira Nascimento"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Luis Miguel Goncalves Da Silva"
+        },
+        "mentor": {
+          "nome": "Patricia Segura"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Alice Carvalho"
+        },
+        "mentor": {
+          "nome": "Henrique Rocha Carvalhal"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Esther Cristine Silva Ribeiro"
+        },
+        "mentor": {
+          "nome": "Raul Henrique Crus Baptista"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Lohran Romualdo Mendes Da Silva"
+        },
+        "mentor": {
+          "nome": "Kauanny Aparecida Malaquias Lima"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Isabella Dos Santos Saldanha"
+        },
+        "mentor": {
+          "nome": "Miguel Martins De Assis"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Melissa Victoria De Oliveira Carvalho"
+        },
+        "mentor": {
+          "nome": "Matheus Turchetto"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Kéthily Nayara Da Silva"
+        },
+        "mentor": {
+          "nome": "Amanda Passos De Almeida"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Hingrid Saraiva Dos Santos"
+        },
+        "mentor": {
+          "nome": "Luana Karoline Martins De Oliveira"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Gustavo Augusto Tombolo Reis"
+        },
+        "mentor": {
+          "nome": "Arthur Davi De Souza Fernandes"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Marcela Roberto De Oliveira"
+        },
+        "mentor": {
+          "nome": "Felipe De Souza Rodrigues"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Manuella De Moraes Souza"
+        },
+        "mentor": {
+          "nome": "Livia Oliveira Nascimento"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Larissa Ribeiro Do Nascimento"
+        },
+        "mentor": {
+          "nome": "Patricia Segura"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Zayn Al Abidin Rasuli"
+        },
+        "mentor": {
+          "nome": "Henrique Rocha Carvalhal"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Arthur Cohen Barreto"
+        },
+        "mentor": {
+          "nome": "Raul Henrique Crus Baptista"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Ana Julia Menezes Da Silva"
+        },
+        "mentor": {
+          "nome": "Kauanny Aparecida Malaquias Lima"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Emanuel Alves Oliveira"
+        },
+        "mentor": {
+          "nome": "Miguel Martins De Assis"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Fernanda Polachini Mayer Gomes Marques"
+        },
+        "mentor": {
+          "nome": "Matheus Turchetto"
+        }
+      }
+    ],
+    "questoes": [
+      {
+        "pergunta": "Ao provar a água do mar, sentimos o gosto salgado, mas não conseguimos ver os grãos de sal separados da água a olho nu. A água do mar é um exemplo de:",
+        "alternativas": [
+          "Substância pura simples",
+          "Substância pura composta",
+          "Mistura homogênea",
+          "Mistura heterogênea"
+        ],
+        "imagemSvg": "<img src=\"imagens/agua_do_mar.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "Quando nos machucamos, novas células idênticas às originais são produzidas rapidamente para cicatrizar o ferimento. A mitose é um tipo de divisão celular responsável, principalmente, por:",
+        "alternativas": [
+          "Formar gametas com metade dos cromossomos",
+          "Gerar crescimento e reposição de células do corpo, com células geneticamente idênticas",
+          "Reduzir o número de cromossomos pela metade",
+          "Ocorrer apenas nas células reprodutivas"
+        ],
+        "imagemSvg": "<img src=\"imagens/mitose.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "Ao queimar um pedaço de papel dentro de um recipiente fechado, a massa total das cinzas e dos gases liberados é igual à massa do papel e do oxigênio consumidos na reação. Segundo a Lei de Lavoisier (conservação das massas), em um sistema fechado, numa reação química:",
+        "alternativas": [
+          "A massa total dos reagentes é sempre maior que a dos produtos",
+          "A massa total dos reagentes é sempre menor que a dos produtos",
+          "A massa total dos reagentes é igual à massa total dos produtos",
+          "A massa não pode ser medida em reações químicas"
+        ],
+        "imagemSvg": "<img src=\"imagens/lei_lavoisier.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "Ao longo da história da Ciência, diferentes cientistas propuseram modelos para representar a estrutura do átomo, cada um baseado nos experimentos disponíveis em sua época. O modelo atômico que descreveu o átomo como uma esfera maciça, indivisível, foi proposto por:",
+        "alternativas": [
+          "Rutherford",
+          "Bohr",
+          "Dalton",
+          "Thomson"
+        ],
+        "imagemSvg": "<img src=\"imagens/modelos_atomicos.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "Ao abrir um vidro de perfume, o cheiro rapidamente se espalha por todo o ambiente, porque as partículas se movem livremente pelo ar. No estado gasoso, as partículas da matéria, em comparação ao estado sólido, apresentam:",
+        "alternativas": [
+          "Menor agitação e maior aproximação",
+          "Maior agitação e maior distância entre si",
+          "Nenhuma movimentação",
+          "Exatamente a mesma organização do estado sólido"
+        ],
+        "imagemSvg": "<img src=\"imagens/estados_materia.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "Pessoas com diabetes utilizam injeções de insulina produzida em laboratório, a partir de bactérias que foram geneticamente modificadas para essa finalidade. Um exemplo de aplicação da biotecnologia na sociedade é:",
+        "alternativas": [
+          "A produção de insulina humana por meio de bactérias geneticamente modificadas",
+          "A observação de estrelas com telescópio",
+          "A medição da temperatura ambiente",
+          "O cultivo tradicional sem nenhuma modificação genética"
+        ],
+        "imagemSvg": "<img src=\"imagens/biotecnologia_insulina.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "Astronautas na Lua não conseguem se comunicar diretamente por meio de gritos, precisando usar rádios, pois não há atmosfera para transportar o som. O som é um exemplo de onda:",
+        "alternativas": [
+          "Eletromagnética, que se propaga no vácuo",
+          "Mecânica, que precisa de um meio material para se propagar",
+          "Que se propaga apenas na luz",
+          "Que não depende de nenhum meio"
+        ],
+        "imagemSvg": "<img src=\"imagens/som_ondas.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "Exames de paternidade e investigações criminais utilizam pequenas amostras de células para comparar informações genéticas armazenadas em uma molécula presente em todas as células do corpo. A principal função do DNA nas células é:",
+        "alternativas": [
+          "Fornecer energia imediata para a célula",
+          "Armazenar e transmitir as informações genéticas dos seres vivos",
+          "Realizar a fotossíntese",
+          "Digerir nutrientes"
+        ],
+        "imagemSvg": "<img src=\"imagens/dna.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "Ao cruzar uma ervilha de semente amarela (dominante) com uma de semente verde (recessiva), Mendel observou que a primeira geração de descendentes produzia apenas sementes amarelas. Segundo as Leis de Mendel, quando um indivíduo tem genótipo heterozigoto (Aa) para uma característica de dominância completa, sua característica observável (fenótipo) será:",
+        "alternativas": [
+          "Sempre a característica recessiva",
+          "A característica determinada pelo alelo dominante",
+          "Uma mistura das duas características",
+          "Nenhuma característica é expressa"
+        ],
+        "imagemSvg": "<img src=\"imagens/mendel_ervilhas.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "Ao fraturar um osso, o médico costuma solicitar um exame de imagem que utiliza um tipo de radiação capaz de atravessar tecidos moles e revelar estruturas internas do corpo. Um uso benéfico das radiações ionizantes na área médica é:",
+        "alternativas": [
+          "A realização de exames de raio-X e radioterapia para tratamento do câncer",
+          "A eliminação total dos riscos à saúde, sem qualquer cuidado",
+          "O uso sem qualquer proteção ou controle",
+          "A substituição completa de todos os exames de sangue"
+        ],
+        "imagemSvg": "<img src=\"imagens/raio_x.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      }
+    ]
+  },
+  "9oAno_B": {
+    "nomeTurma": "9ºAno B",
+    "duplas": [
+      {
+        "apoio": {
+          "nome": "Paulo Celso Da Costa Junior"
+        },
+        "mentor": {
+          "nome": "Sophia Menezes De Araujo"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Munique Cristina Lucas"
+        },
+        "mentor": {
+          "nome": "Thayna Seabra De Oliveira Do Nascimento"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Alejandro Vieira Lima"
+        },
+        "mentor": {
+          "nome": "Yasmin Taira De Oliveira"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Allan Bezerra De Lima"
+        },
+        "mentor": {
+          "nome": "Christofer Felipy Santos Fonseca"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Caio Felipe Nogueira Dos Santos"
+        },
+        "mentor": {
+          "nome": "Julio Cesar Alves Dos Santos"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Gabriela Vitoria Severa Lins"
+        },
+        "mentor": {
+          "nome": "Nicoly Vitoria Santos De Menezes"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Leonardo Menoia"
+        },
+        "mentor": {
+          "nome": "Renato Souza Santos"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Jennyfer Vitoria Basilio Gomes"
+        },
+        "mentor": {
+          "nome": "Luan Venites Balbino"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Nicolas Penteado"
+        },
+        "mentor": {
+          "nome": "Sophia Menezes De Araujo"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Wendell Rafael De Jesus Lessa"
+        },
+        "mentor": {
+          "nome": "Thayna Seabra De Oliveira Do Nascimento"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Everton Henrique Carmo Rodrigues"
+        },
+        "mentor": {
+          "nome": "Yasmin Taira De Oliveira"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Pedro Henrique Carlos Lima"
+        },
+        "mentor": {
+          "nome": "Christofer Felipy Santos Fonseca"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Ana Beatriz Rodrigues Oliveira"
+        },
+        "mentor": {
+          "nome": "Julio Cesar Alves Dos Santos"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Alyson Daniel Oliveira Hercule"
+        },
+        "mentor": {
+          "nome": "Nicoly Vitoria Santos De Menezes"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Renan Leandro Rodrigues Vicente"
+        },
+        "mentor": {
+          "nome": "Renato Souza Santos"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Anna Beatriz Santiago Da Silva"
+        },
+        "mentor": {
+          "nome": "Luan Venites Balbino"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Maria Eduarda Felix Da Silva"
+        },
+        "mentor": {
+          "nome": "Sophia Menezes De Araujo"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Pedro Henrique Oliveira Gomes"
+        },
+        "mentor": {
+          "nome": "Thayna Seabra De Oliveira Do Nascimento"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Pietro Rodrigues Miranda"
+        },
+        "mentor": {
+          "nome": "Yasmin Taira De Oliveira"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Rodolfo Rafael Golzenleuchter Moreno Junior"
+        },
+        "mentor": {
+          "nome": "Christofer Felipy Santos Fonseca"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Wilhan Kenji Antonio"
+        },
+        "mentor": {
+          "nome": "Julio Cesar Alves Dos Santos"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Raphaelly Aparecida Marinho De Oliveira"
+        },
+        "mentor": {
+          "nome": "Nicoly Vitoria Santos De Menezes"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Ana Clara Goncalves Torres Loyola"
+        },
+        "mentor": {
+          "nome": "Renato Souza Santos"
+        }
+      },
+      {
+        "apoio": {
+          "nome": "Elias Silva De Lima"
+        },
+        "mentor": {
+          "nome": "Luan Venites Balbino"
+        }
+      }
+    ],
+    "questoes": [
+      {
+        "pergunta": "Ao longo da história da Ciência, diferentes cientistas propuseram modelos para representar a estrutura do átomo, cada um baseado nos experimentos disponíveis em sua época. O modelo atômico que descreveu o átomo como uma esfera maciça, indivisível, foi proposto por:",
+        "alternativas": [
+          "Rutherford",
+          "Bohr",
+          "Dalton",
+          "Thomson"
+        ],
+        "imagemSvg": "<img src=\"imagens/modelos_atomicos.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "Ao provar a água do mar, sentimos o gosto salgado, mas não conseguimos ver os grãos de sal separados da água a olho nu. A água do mar é um exemplo de:",
+        "alternativas": [
+          "Substância pura simples",
+          "Substância pura composta",
+          "Mistura homogênea",
+          "Mistura heterogênea"
+        ],
+        "imagemSvg": "<img src=\"imagens/agua_do_mar.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "Pessoas com diabetes utilizam injeções de insulina produzida em laboratório, a partir de bactérias que foram geneticamente modificadas para essa finalidade. Um exemplo de aplicação da biotecnologia na sociedade é:",
+        "alternativas": [
+          "A produção de insulina humana por meio de bactérias geneticamente modificadas",
+          "A observação de estrelas com telescópio",
+          "A medição da temperatura ambiente",
+          "O cultivo tradicional sem nenhuma modificação genética"
+        ],
+        "imagemSvg": "<img src=\"imagens/biotecnologia_insulina.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "Quando nos machucamos, novas células idênticas às originais são produzidas rapidamente para cicatrizar o ferimento. A mitose é um tipo de divisão celular responsável, principalmente, por:",
+        "alternativas": [
+          "Formar gametas com metade dos cromossomos",
+          "Gerar crescimento e reposição de células do corpo, com células geneticamente idênticas",
+          "Reduzir o número de cromossomos pela metade",
+          "Ocorrer apenas nas células reprodutivas"
+        ],
+        "imagemSvg": "<img src=\"imagens/mitose.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "Astronautas na Lua não conseguem se comunicar diretamente por meio de gritos, precisando usar rádios, pois não há atmosfera para transportar o som. O som é um exemplo de onda:",
+        "alternativas": [
+          "Eletromagnética, que se propaga no vácuo",
+          "Mecânica, que precisa de um meio material para se propagar",
+          "Que se propaga apenas na luz",
+          "Que não depende de nenhum meio"
+        ],
+        "imagemSvg": "<img src=\"imagens/som_ondas.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "Ao queimar um pedaço de papel dentro de um recipiente fechado, a massa total das cinzas e dos gases liberados é igual à massa do papel e do oxigênio consumidos na reação. Segundo a Lei de Lavoisier (conservação das massas), em um sistema fechado, numa reação química:",
+        "alternativas": [
+          "A massa total dos reagentes é sempre maior que a dos produtos",
+          "A massa total dos reagentes é sempre menor que a dos produtos",
+          "A massa total dos reagentes é igual à massa total dos produtos",
+          "A massa não pode ser medida em reações químicas"
+        ],
+        "imagemSvg": "<img src=\"imagens/lei_lavoisier.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "Ao cruzar uma ervilha de semente amarela (dominante) com uma de semente verde (recessiva), Mendel observou que a primeira geração de descendentes produzia apenas sementes amarelas. Segundo as Leis de Mendel, quando um indivíduo tem genótipo heterozigoto (Aa) para uma característica de dominância completa, sua característica observável (fenótipo) será:",
+        "alternativas": [
+          "Sempre a característica recessiva",
+          "A característica determinada pelo alelo dominante",
+          "Uma mistura das duas características",
+          "Nenhuma característica é expressa"
+        ],
+        "imagemSvg": "<img src=\"imagens/mendel_ervilhas.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "Ao abrir um vidro de perfume, o cheiro rapidamente se espalha por todo o ambiente, porque as partículas se movem livremente pelo ar. No estado gasoso, as partículas da matéria, em comparação ao estado sólido, apresentam:",
+        "alternativas": [
+          "Menor agitação e maior aproximação",
+          "Maior agitação e maior distância entre si",
+          "Nenhuma movimentação",
+          "Exatamente a mesma organização do estado sólido"
+        ],
+        "imagemSvg": "<img src=\"imagens/estados_materia.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "Ao fraturar um osso, o médico costuma solicitar um exame de imagem que utiliza um tipo de radiação capaz de atravessar tecidos moles e revelar estruturas internas do corpo. Um uso benéfico das radiações ionizantes na área médica é:",
+        "alternativas": [
+          "A realização de exames de raio-X e radioterapia para tratamento do câncer",
+          "A eliminação total dos riscos à saúde, sem qualquer cuidado",
+          "O uso sem qualquer proteção ou controle",
+          "A substituição completa de todos os exames de sangue"
+        ],
+        "imagemSvg": "<img src=\"imagens/raio_x.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      },
+      {
+        "pergunta": "Exames de paternidade e investigações criminais utilizam pequenas amostras de células para comparar informações genéticas armazenadas em uma molécula presente em todas as células do corpo. A principal função do DNA nas células é:",
+        "alternativas": [
+          "Fornecer energia imediata para a célula",
+          "Armazenar e transmitir as informações genéticas dos seres vivos",
+          "Realizar a fotossíntese",
+          "Digerir nutrientes"
+        ],
+        "imagemSvg": "<img src=\"imagens/dna.png\" alt=\"Imagem ilustrativa da questão\" style=\"width:100%;max-width:420px;height:auto;display:block;margin:10px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);object-fit:cover;\">"
+      }
+    ]
+  }
+}
+</script>
+
+<script>
+const DADOS = JSON.parse(document.getElementById('dados-turmas').textContent);
+const LETRAS = ['A','B','C','D'];
+
+// Cole aqui a URL do Apps Script publicado como "Aplicativo da Web" (termina em /exec).
+// Veja as instruções no topo do arquivo Code.gs.
+const WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbxpY_PUQdDl4_4P86xDcnNwvTY19-mokhueqlFUAcOl_FKMeJUwLIoB8WOU88WO-iw/exec';
+
+let turmaAtual = null;
+let duplaIdxAtual = null;
+let duplaAtual = null;
+
+function pegarParam(nome){
+  return new URLSearchParams(window.location.search).get(nome);
+}
+
+function nomeDuplaHtml(dp){
+  if(dp.mentor) return `${dp.apoio.nome}  &amp;  ${dp.mentor.nome}`;
+  return `${dp.apoio.nome}  &amp;  (sem mentor — apoio direto do professor)`;
+}
+
+function dataAtualFormatada(){
+  const hoje = new Date();
+  const dia = String(hoje.getDate()).padStart(2, '0');
+  const mes = String(hoje.getMonth() + 1).padStart(2, '0');
+  const ano = hoje.getFullYear();
+  return `${dia} / ${mes} / ${ano}`;
+}
+
+function renderQuestoes(questoes){
+  return questoes.map((q, i) => {
+    const alts = q.alternativas.map((alt, j) => {
+      return `<li data-alt="${j}"><span class="letra">${LETRAS[j]}</span>${alt}</li>`;
+    }).join('');
+    return `<div class="questao" data-q="${i}">
+      <div class="enun"><span class="numero">${i+1}.</span>${q.pergunta}</div>
+      ${q.imagemSvg || ''}
+      <ul class="alternativas">${alts}</ul>
+    </div>`;
+  }).join('');
+}
+
+let respostasAtuais = [];
+
+function ativarMarcacao(totalQuestoes){
+  respostasAtuais = new Array(totalQuestoes).fill(null);
+  document.querySelectorAll('.questao').forEach(q => {
+    const qIdx = parseInt(q.dataset.q, 10);
+    const itens = q.querySelectorAll('.alternativas li');
+    itens.forEach(li => {
+      li.addEventListener('click', () => {
+        itens.forEach(o => o.classList.remove('marcada'));
+        li.classList.add('marcada');
+        respostasAtuais[qIdx] = parseInt(li.dataset.alt, 10);
+        atualizarStatusEnvio();
+      });
+    });
+  });
+}
+
+function renderSelecao(){
+  document.getElementById('tituloHeader').textContent = 'Atividade de Revisão';
+  document.getElementById('subHeader').textContent = 'Selecione sua turma e a sua dupla para abrir a atividade.';
+  document.title = 'Atividade de Ciências — Revisão';
+
+  const turmasOrdenadas = Object.keys(DADOS);
+  const main = document.getElementById('main');
+  main.innerHTML = `<div class="selecao">
+    <h2>Encontrar minha atividade</h2>
+    <p>Escolha sua turma e depois a sua dupla na lista (os dois nomes aparecem juntos). A atividade abre automaticamente.</p>
+    <div class="campo-select">
+      <label for="selTurma">Sua turma</label>
+      <select id="selTurma">
+        <option value="">Selecione a turma...</option>
+        ${turmasOrdenadas.map(slug => `<option value="${slug}">${DADOS[slug].nomeTurma}</option>`).join('')}
+      </select>
+    </div>
+    <div class="campo-select">
+      <label for="selAluno">Sua dupla</label>
+      <select id="selAluno" disabled>
+        <option value="">Selecione a turma primeiro...</option>
+      </select>
+    </div>
+  </div>`;
+
+  const selTurma = document.getElementById('selTurma');
+  const selAluno = document.getElementById('selAluno');
+
+  selTurma.addEventListener('change', () => {
+    const slug = selTurma.value;
+    if(!slug){
+      selAluno.innerHTML = '<option value="">Selecione a turma primeiro...</option>';
+      selAluno.disabled = true;
+      return;
+    }
+    const duplas = DADOS[slug].duplas;
+    const opcoes = duplas.map((dp, i) => {
+      const rotulo = dp.mentor ? `${dp.apoio.nome}  &amp;  ${dp.mentor.nome}` : `${dp.apoio.nome}  &amp;  (sem mentor)`;
+      return `<option value="${i+1}">${rotulo}</option>`;
+    }).join('');
+    selAluno.innerHTML = '<option value="">Selecione sua dupla...</option>' + opcoes;
+    selAluno.disabled = false;
+  });
+
+  selAluno.addEventListener('change', () => {
+    const slug = selTurma.value;
+    const duplaIdx = parseInt(selAluno.value, 10);
+    if(!slug || !duplaIdx) return;
+    const url = new URL(window.location);
+    url.searchParams.set('turma', slug);
+    url.searchParams.set('dupla', duplaIdx);
+    window.history.pushState({}, '', url);
+    renderAtividade(slug, duplaIdx);
+  });
+}
+
+function renderAtividade(turmaSlug, duplaIdx){
+  const dados = DADOS[turmaSlug];
+  const main = document.getElementById('main');
+
+  if(!dados || !duplaIdx || duplaIdx < 1 || duplaIdx > dados.duplas.length){
+    renderSelecao();
+    return;
+  }
+
+  const dp = dados.duplas[duplaIdx - 1];
+  document.getElementById('tituloHeader').textContent = `Atividade de Revisão — ${dados.nomeTurma}`;
+  document.getElementById('subHeader').textContent =
+    `10 questões de revisão sobre as habilidades prioritárias da turma ${dados.nomeTurma} (1º e 2º Bimestres de 2026).`;
+  document.title = `Atividade — ${dp.apoio.nome} — ${dados.nomeTurma}`;
+
+  turmaAtual = turmaSlug;
+  duplaIdxAtual = duplaIdx;
+  duplaAtual = dp;
+
+  main.innerHTML = `<div class="folha">
+    <div class="cabecalho-escola">E.E. PROFª WANDA MASCAGNI DE SÁ</div>
+    <div class="linha-campo"><div class="campo"><b>NOME:</b> ${nomeDuplaHtml(dp)}</div></div>
+    <div class="linha-campo">
+      <div class="campo" style="flex:0 0 260px;"><b>SÉRIE:</b> ${dados.nomeTurma}</div>
+      <div class="campo"><b>DATA:</b> ${dataAtualFormatada()}</div>
+    </div>
+    <div class="titulo-atividade">Atividade de Ciências — Revisão</div>
+    <div class="subtitulo-atividade">10 questões de revisão · habilidades com maior necessidade de reforço na turma</div>
+    ${renderQuestoes(dados.questoes)}
+    <div class="rodape-envio">
+      <button class="btn-enviar" id="btnEnviar">Enviar respostas</button>
+      <div id="statusEnvio"></div>
+    </div>
+  </div>`;
+  ativarMarcacao(dados.questoes.length);
+  document.getElementById('btnEnviar').addEventListener('click', enviarRespostas);
+}
+
+function atualizarStatusEnvio(){
+  const respondidas = respostasAtuais.filter(r => r !== null).length;
+  const total = respostasAtuais.length;
+  const el = document.getElementById('statusEnvio');
+  if(respondidas < total){
+    el.textContent = `${respondidas} de ${total} questões respondidas.`;
+  } else {
+    el.textContent = `Todas as ${total} questões respondidas — clique em "Enviar respostas".`;
+  }
+}
+
+async function enviarRespostas(){
+  const btn = document.getElementById('btnEnviar');
+  const status = document.getElementById('statusEnvio');
+
+  if(WEBAPP_URL.indexOf('COLE_AQUI') !== -1){
+    status.textContent = 'Envio ainda não configurado pelo professor (URL do Apps Script pendente).';
+    return;
+  }
+  if(!turmaAtual || !duplaIdxAtual){
+    status.textContent = 'Nenhuma atividade carregada.';
+    return;
+  }
+
+  const semRespostas = respostasAtuais.filter(r => r === null).length;
+  if(semRespostas > 0){
+    const confirmar = confirm(`Ainda faltam ${semRespostas} questão(ões) sem resposta. Enviar mesmo assim?`);
+    if(!confirmar) return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Enviando...';
+  status.textContent = 'Enviando respostas para a planilha...';
+
+  const payload = {
+    turma: turmaAtual,
+    duplaIndex: duplaIdxAtual,
+    apoioNome: duplaAtual.apoio.nome,
+    mentorNome: duplaAtual.mentor ? duplaAtual.mentor.nome : '',
+    respostas: respostasAtuais,
+  };
+
+  try{
+    await fetch(WEBAPP_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload),
+    });
+    status.textContent = '✓ Respostas enviadas! Obrigado, dupla.';
+    btn.textContent = 'Respostas enviadas ✓';
+  } catch(err){
+    status.textContent = 'Não foi possível enviar (verifique sua conexão com a internet) — tente novamente.';
+    btn.disabled = false;
+    btn.textContent = 'Enviar respostas';
+  }
+}
+
+(function init(){
+  const turmaSlug = pegarParam('turma');
+  const duplaIdx = parseInt(pegarParam('dupla'), 10);
+  if(turmaSlug && duplaIdx){
+    renderAtividade(turmaSlug, duplaIdx);
+  } else {
+    renderSelecao();
+  }
+})();
+</script>
+</body>
+</htmle
