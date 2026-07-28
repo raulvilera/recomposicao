@@ -12,10 +12,17 @@
 }
 *{box-sizing:border-box;}
 body{ margin:0; background:var(--cinza-100); color:var(--cinza-900); -webkit-font-smoothing:antialiased; }
-header.top{ background:linear-gradient(135deg, var(--azul-900), var(--azul-500)); color:#fff; padding:24px 28px 20px; box-shadow:0 4px 18px rgba(15,42,77,.25);}
+header.top{ position:relative; background:linear-gradient(135deg, var(--azul-900), var(--azul-500)); color:#fff; padding:24px 28px 20px; box-shadow:0 4px 18px rgba(15,42,77,.25);}
 header.top .eyebrow{ font-size:12px; letter-spacing:.14em; text-transform:uppercase; opacity:.8; font-weight:600; margin-bottom:6px;}
 header.top h1{ margin:0 0 6px; font-size:22px; font-weight:800;}
 header.top p{ margin:0; font-size:13px; opacity:.88; max-width:720px; line-height:1.5;}
+.btn-trocar{
+  position:absolute; top:20px; right:28px;
+  background:rgba(255,255,255,.14); color:#fff; border:1px solid rgba(255,255,255,.4);
+  border-radius:8px; padding:8px 14px; font-size:12.5px; font-weight:600; cursor:pointer;
+}
+.btn-trocar:hover{ background:rgba(255,255,255,.26); }
+@media (max-width:640px){ .btn-trocar{ position:static; margin-top:12px; display:inline-block; } }
 .controls{ display:flex; flex-wrap:wrap; gap:12px; align-items:center; margin-top:16px;}
 button{ font-family:inherit; font-size:14px; border:none; border-radius:8px; cursor:pointer; }
 button.primary{ background:#fff; color:var(--azul-700); font-weight:800; padding:10px 18px; box-shadow:0 2px 6px rgba(0,0,0,.15);}
@@ -88,6 +95,7 @@ main{ max-width:800px; margin:0 auto; padding:22px 20px 60px; }
 </head>
 <body>
 <header class="top">
+  <button id="btnTrocarTurma" class="btn-trocar" style="display:none;" type="button">↺ Trocar turma/dupla</button>
   <div class="eyebrow">Ciências · Revisão em dupla</div>
   <h1 id="tituloHeader">Atividade de Revisão</h1>
   <p id="subHeader">Selecione sua turma e seu nome para abrir a atividade da sua dupla.</p>
@@ -2275,6 +2283,7 @@ function renderSelecao(){
   document.getElementById('tituloHeader').textContent = 'Atividade de Revisão';
   document.getElementById('subHeader').textContent = 'Selecione sua turma e a sua dupla para abrir a atividade.';
   document.title = 'Atividade de Ciências — Revisão';
+  document.getElementById('btnTrocarTurma').style.display = 'none';
 
   const turmasOrdenadas = Object.keys(DADOS);
   const main = document.getElementById('main');
@@ -2341,6 +2350,7 @@ function renderAtividade(turmaSlug, duplaIdx){
   document.getElementById('subHeader').textContent =
     `10 questões de revisão sobre as habilidades prioritárias da turma ${dados.nomeTurma} (1º e 2º Bimestres de 2026).`;
   document.title = `Atividade — ${dp.apoio.nome} — ${dados.nomeTurma}`;
+  document.getElementById('btnTrocarTurma').style.display = 'inline-block';
 
   turmaAtual = turmaSlug;
   duplaIdxAtual = duplaIdx;
@@ -2423,7 +2433,25 @@ async function enviarRespostas(){
   }
 }
 
+function voltarSelecao(){
+  const respondidas = respostasAtuais.filter(r => r !== null).length;
+  if(respondidas > 0){
+    const confirmar = confirm('Você tem respostas marcadas nesta atividade que ainda não foram enviadas. Trocar de turma agora mesmo assim?');
+    if(!confirmar) return;
+  }
+  const url = new URL(window.location);
+  url.searchParams.delete('turma');
+  url.searchParams.delete('dupla');
+  window.history.pushState({}, '', url);
+  turmaAtual = null;
+  duplaIdxAtual = null;
+  duplaAtual = null;
+  respostasAtuais = [];
+  renderSelecao();
+}
+
 (function init(){
+  document.getElementById('btnTrocarTurma').addEventListener('click', voltarSelecao);
   const turmaSlug = pegarParam('turma');
   const duplaIdx = parseInt(pegarParam('dupla'), 10);
   if(turmaSlug && duplaIdx){
